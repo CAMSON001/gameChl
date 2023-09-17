@@ -51,7 +51,7 @@ greenBtn.on("click", ()=>{
     audioGreen.play();
     btnAnimation(greenBtn);
     setTimeout(()=>{
-        indicator()
+        indicator(1,Math.floor(Math.random() * level+1))
     }, 1000)
 })
 
@@ -81,19 +81,21 @@ function btnAnimation(btn) {
 
 
 
-function indicator(){
-    for(let i=1; i<Math.floor(Math.random() *level +1); i++){
+function indicator(i, btnToPressedValue){
+    if (i <= btnToPressedValue){
         let index = Math.floor(Math.random() * allBtns.length)
+        allBtns[index].ObjectQuery.addClass('pressed');
         setTimeout(()=>{
-            for(let j=1; j<Math.floor(Math.random() * level+1); j++){
-            allBtns[index].ObjectQuery.addClass('pressed');
-            setTimeout(function(){
-                allBtns[index].ObjectQuery.removeClass('pressed');
-            },100)
-            allBtns[index].audioUrl.play()
-            allBtns[index].increment()
-        }
-        },1000)
+            allBtns[index].ObjectQuery.removeClass('pressed');
+        },100)
+        allBtns[index].audioUrl.play()
+        allBtns[index].increment()
         
-    } 
+        i++
+        setTimeout(function () {
+            indicator(i, btnToPressedValue); 
+        }, 1000); 
+    }
+
 }
+
