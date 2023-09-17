@@ -6,7 +6,8 @@ let audioGreen = new Audio("./sounds/green.mp3");
 let audioRed = new Audio("./sounds/red.mp3");
 let audioYellow = new Audio("./sounds/yellow.mp3");
 let audioBlue = new Audio("./sounds/blue.mp3");
-let level = 5
+let wrongAudio = new Audio("./sounds/wrong.mp3");
+let level = 2
 
 /* 
 let clickTime = 0
@@ -46,31 +47,28 @@ let allBtns = [green,red,yellow,blue]
 
 
 
-
-greenBtn.on("click", ()=>{
-    audioGreen.play();
-    btnAnimation(greenBtn);
-    setTimeout(()=>{
-        indicator(1,Math.floor(Math.random() * level+1))
-    }, 1000)
-})
-
-redBtn.on("click", ()=>{
-    audioRed.play();
-    btnAnimation(redBtn);
-})
-
-yellowBtn.on("click", ()=>{
-    audioYellow.play();
-    btnAnimation(yellowBtn);
-})
-
-blueBtn.on("click", ()=>{
-    audioBlue.play();
-    btnAnimation(blueBtn);
-})
+runBtn(greenBtn,audioGreen);
+runBtn(redBtn,audioRed);
+runBtn(yellowBtn,audioYellow)
+runBtn(blueBtn,audioBlue)
 
         
+
+
+
+
+function runBtn(btnToClick, audioUrlToplay){
+    btnToClick.on("click", ()=>{
+        audioUrlToplay.play()
+        btnAnimation(btnToClick);
+        setTimeout(()=>{
+            indicator(1,Math.floor(Math.random() * level+1))
+        }, 1000)
+    })
+}
+
+
+
 function btnAnimation(btn) {
     btn.addClass('pressed');
 
