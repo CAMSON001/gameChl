@@ -8,6 +8,7 @@ let audioYellow = new Audio("./sounds/yellow.mp3");
 let audioBlue = new Audio("./sounds/blue.mp3");
 let wrongAudio = new Audio("./sounds/wrong.mp3");
 let level = 2;
+let gameArrow = [];
 
 /* 
 let clickTime = 0
@@ -53,6 +54,7 @@ function indicator(i, btnToPressedValue) {
     }, 100);
     allBtns[index].audioUrl.play();
     allBtns[index].increment();
+    gameArrow.push(allBtns[index]);
 
     i++;
     setTimeout(function () {
